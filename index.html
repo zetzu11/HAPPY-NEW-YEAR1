@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMISSYOU</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            overflow: hidden;
+            position: relative;
+        }
+
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgb(223, 0, 193);
+            font-family: Arial, sans-serif;
+            font-size: 1vw;
+            font-weight: bold;
+            text-align: center;
+            z-index: 2;
+            max-width: 80%;
+            word-wrap: break-word;
+            white-space: normal;
+            line-height: 1.5;
+            box-sizing: border-box;
+        }
+
+        button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: rgb(234, 0, 255);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: blue;
+        }
+
+        /* City landscape styles */
+        #frams {
+            width: 400px;
+            height: 600px;
+            border: 30px solid grey;
+            box-shadow: 10px 10px 20px black;
+            overflow: hidden;
+            position: absolute;
+            top: 100px;
+            z-index: 1;
+        }
+
+        #seaT {
+            width: 500px;
+            height: 110px;
+            background: linear-gradient(0deg, #91c8e4, #749bc2, #4682a9);
+            position: absolute;
+            bottom: 0;
+        }
+
+        #roadT {
+            width: 600px;
+            height: 40px;
+            background: #846870;
+            border-top: 3px solid #6a535a;
+            border-bottom: 5px solid #6a535a;
+            position: absolute;
+            bottom: 90px;
+        }
+
+        #sky {
+            width: 400px;
+            height: 600px;
+            background: linear-gradient(180deg, red, orange, yellow);
+            position: absolute;
+            bottom: 0;
+        }
+
+        #sunmoon {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(180deg, yellow, #ff4700, white);
+            border-radius: 59%;
+            position: absolute;
+            top: 200px;
+            left: 100px;
+            filter: blur(2px);
+        }
+
+        #cloud1 {
+            width: 150px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 250px;
+            left: 240px;
+            filter: blur(6px);
+        }
+
+        #cloud1:after {
+            content: "";
+            width: 100px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            filter: blur(3px);
+        }
+
+        #cloud1:before {
+            content: "";
+            width: 100px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            filter: blur(3px);
+        }
+
+        #cloud2 {
+            width: 200px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 50px;
+            left: 40px;
+            filter: blur(6px);
+        }
+
+        #cloud2:after {
+            content: "";
+            width: 100px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            filter: blur(3px);
+        }
+
+        #cloud2:before {
+            content: "";
+            width: 100px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            filter: blur(3px);
+        }
+
+        .new-message {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-align: center;
+            color: rgb(223, 0, 193);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            white-space: normal;
+            overflow-x: auto;
+            width: 90%;
+            padding: 20px;
+            font-size: 1vw;
+            line-height: 1.5;
+            box-sizing: border-box;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <!-- Fireworks Stage Message -->
+    <div class="message" id="messageText">HAPPY NEW YEAR MY LOVE:> WISHING YOU THE VERY BEST OF EVERY BEST THAT 2025 COULD OFFER TO YOU, BE HAPPY:></div>
+    <button onclick="nextStage()">--></button>
+
+    <script>
+        let currentStage = 1;
+
+        function nextStage() {
+            if (currentStage === 1) {
+                // Transition to City Landscape after "Next" button is clicked
+                document.body.innerHTML = ` 
+                    <canvas id="canvas"></canvas>
+                    <div id="frams">
+                        <div id="sky">
+                            <div id="sunmoon"></div>
+                            <div id="cloud1"></div>
+                            <div id="cloud2"></div>
+                        </div>
+                        <div id="seaT"></div>
+                        <div id="roadT"></div>
+                    </div>
+                    <div class="message" id="messageText">
+                        I LOVE YOU AND I MISS YOU .. SOO MUCHHHH..<br>
+                        ........🌷🌸🌷🌸<br>
+                        .... 🌸🌷🌸🌷🌸<br>
+                      .. ..../ᐠ  🌷🌸🌷🌸🌷<br>
+                        ( ˶ᵔ ᵕ ᵔ🌷🌸🌷<br>
+                     \\つ.....\\つ \\      /<br>
+                        U U  / 🎀 \\<br>
+                        HEHE
+                    </div>
+                    <button onclick="nextMessage()">--></button>
+                    
+                `;
+                currentStage = 2;
+                window.requestAnimationFrame(updateWorld);  // Start the fireworks after transition
+            }
+        }
+
+        function nextMessage() {
+            document.getElementById("messageText").innerHTML = `
+            <h2>HTHANK YOU.. FOR BEING PART OF MY LIFE IN 2024 MY BEST YEAR WHEHEHWHEHE BEST YEAR TALGA CUZ YOU WERE IN IT EI HEHHE</h2>
+            <h2>OFC I WON'T LEAVE YOU SA 2024 HEH ILL BRING YOU TO MY 2025 AS AN INSPIRATION:> AND OFC I LOVEEEEE YOUUU ALWAYSSSS AND FOREVER:>> EVERYTIME I REMEMBER YOU, YOU STILL MAKE ME SMILE EI HEHE FR</h2>
+            <h2>HAPPY NEW YEAR AGAIN MY BABY.. ILOVEYOU.. SO SO SO MUCH FOREVER AND EVER, BE STRONG MWAHHHHHHHHHHHHHHHHHH</h2>
+            <h2>ILL BE ALWAYS HEREE FOR YOUUUUUUUUUUU, I HOPE THE UNIVERESE WOULDNT BE UNFAIR TO YOU..</h2>
+            <div class="new-message"> 
+            <button onclick="endPage()">END</button>
+            </div>
+            `;
+        }
+
+        // Add endPage function to stop further changes when the "END" button is clicked
+        function endPage() {
+            alert("Thank you for visiting! The page has ended.");
+            window.location.href = "about:blank";  // Redirects to a blank page after the end button is clicked
+        }
+
+        // Fireworks canvas and animation code
+        window.addEventListener("resize", resizeCanvas, false);
+        window.addEventListener("DOMContentLoaded", onLoad, false);
+
+        window.requestAnimationFrame =
+            window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            function (callback) {
+                window.setTimeout(callback, 1000 / 60);
+            };
+
+        var canvas, ctx, w, h, particles = [], probability = 0.04,
+            xPoint, yPoint;
+
+        function onLoad() {
+            canvas = document.getElementById("canvas");
+            ctx = canvas.getContext("2d");
+            resizeCanvas();
+            window.requestAnimationFrame(updateWorld);
+        }
+
+        function resizeCanvas() {
+            if (!!canvas) {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            }
+        }
+
+        function updateWorld() {
+            update();
+            paint();
+            window.requestAnimationFrame(updateWorld);
+        }
+
+        function update() {
+            if (particles.length < 500 && Math.random() < probability) {
+                createFirework();
+            }
+            var alive = [];
+            for (var i = 0; i < particles.length; i++) {
+                if (particles[i].move()) {
+                    alive.push(particles[i]);
+                }
+            }
+            particles = alive;
+        }
+
+        function paint() {
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.fillStyle = "rgba(0,0,0,0.2)";
+            ctx.fillRect(0, 0, w, h);
+            ctx.globalCompositeOperation = 'lighter';
+            for (var i = 0; i < particles.length; i++) {
+                particles[i].draw(ctx);
+            }
+        }
+
+        function createFirework() {
+            xPoint = Math.random() * (w - 200) + 100;
+            yPoint = Math.random() * (h - 200) + 100;
+            var nFire = Math.random() * 50 + 100;
+            var c = "rgb(" + (~~(Math.random() * 200 + 55)) + ","
+                + (~~(Math.random() * 200 + 55)) + "," + (~~(Math.random() * 200 + 55)) + ")";
+            for (var i = 0; i < nFire; i++) {
+                var particle = new Particle();
+                particle.color = c;
+                var vy = Math.sqrt(25 - particle.vx * particle.vx);
+                if (Math.abs(particle.vy) > vy) {
+                    particle.vy = particle.vy > 0 ? vy : -vy;
+                }
+                particles.push(particle);
+            }
+        }
+
+        function Particle() {
+            this.w = this.h = Math.random() * 4 + 1;
+
+            this.x = xPoint - this.w / 2;
+            this.y = yPoint - this.h / 2;
+
+            this.vx = (Math.random() - 0.5) * 10;
+            this.vy = (Math.random() - 0.5) * 10;
+
+            this.alpha = Math.random() * .5 + .5;
+
+            this.color;
+        }
+
+        Particle.prototype = {
+            gravity: 0.05,
+            move: function () {
+                this.x += this.vx;
+                this.vy += this.gravity;
+                this.y += this.vy;
+                this.alpha -= 0.01;
+                if (this.x <= -this.w || this.x >= screen.width ||
+                    this.y >= screen.height ||
+                    this.alpha <= 0) {
+                    return false;
+                }
+                return true;
+            },
+            draw: function (c) {
+                c.save();
+                c.beginPath();
+
+                c.translate(this.x + this.w / 2, this.y + this.h / 2);
+                c.arc(0, 0, this.w, 0, Math.PI * 2);
+                c.fillStyle = this.color;
+                c.globalAlpha = this.alpha;
+
+                c.closePath();
+                c.fill();
+                c.restore();
+            }
+        }
+    </script>
+</body>
+</html>
